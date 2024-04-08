@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { poppins } from "@/app/fonts";
 import "./globals.css";
-
-const inter = Inter({ subsets: ["latin"] });
+import UserNavBar from "@/app/components/UserNavBar";
+import AuthProvider from "@/provider/authProvider";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -11,12 +11,17 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
+}) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={`${poppins.className} bg-white`} >
+        <AuthProvider>
+          <UserNavBar />
+          {children}
+        </AuthProvider>
+      </body>
     </html>
   );
 }
