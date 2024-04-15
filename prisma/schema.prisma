@@ -7,18 +7,22 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model publications {
-  id      String @id @default(auto()) @map("_id") @db.ObjectId
-  author  String
-  body    String
-  title   String
-  user_id String @db.ObjectId
+model Publication {
+  id     String @id @default(auto()) @map("_id") @db.ObjectId
+  author String
+  body   String
+  title  String
+  userId String @map("user_id") @db.ObjectId
+
+  @@map("publications")
 }
 
-model users {
+model User {
   id       String @id @default(auto()) @map("_id") @db.ObjectId
   email    String
   name     String
   password String
   username String
+
+  @@map("users")
 }
