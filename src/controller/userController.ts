@@ -64,3 +64,16 @@ export async function getUsers(): Promise<User[] | ErrorResponse> {
     return getError(error);
   }
 }
+
+export async function getUserByEmail(email: string): Promise<User | ErrorResponse> {
+  try {
+    const res: Response = await fetch(`api/v1/users/email/${email}`);
+    validateResponse(res);
+
+    const user: User | ErrorResponse = await res.json();
+    validateObject(user);
+    return user;
+  } catch (error: any) {
+    return getError(error);
+  }
+}

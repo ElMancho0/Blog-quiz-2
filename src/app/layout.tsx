@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
-import { poppins } from "@/app/fonts";
+import { poppins } from './fonts';
 import "./globals.css";
-import UserNavBar from "@/app/components/UserNavBar";
-import AuthProvider from "@/provider/authProvider";
+import UserNavBar from './components/UserNavBar';
+import AuthProvider from '@/provider/authProvider'
 
 export const metadata: Metadata = {
   title: "Create Next App",

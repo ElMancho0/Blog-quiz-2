@@ -1,26 +1,21 @@
 "use client";
+import { User } from "@prisma/client";
 import { createContext, useState, useContext, useEffect } from "react";
 import { ReactNode } from "react";
 const Context = createContext<ContextType>({
   user: {
     user: {
-      _id: "",
+      id: "",
       username: "",
       name: "",
       password: "",
+      email: "",
     },
     isLoggedUser: false,
   },
   setUser: () => {},
   updateTask: () => {},
 });
-
-export interface User {
-  _id: string;
-  username: string;
-  name: string;
-  password: string;
-}
 
 export type UserLogged = {
   user: User;
@@ -37,10 +32,11 @@ const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [loading, setLoading] = useState<boolean>(true);
   const initialLogged = {
     user: {
-      _id: "",
+      id: "",
       username: "",
       name: "",
       password: "",
+      email: "",
     },
     isLoggedUser: false,
   };

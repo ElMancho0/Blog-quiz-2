@@ -69,3 +69,19 @@ export async function deleteUserInPrisma(
     return { error: error.message, status: 500 };
   }
 }
+
+export async function getUserByEmail(
+  email: string
+): Promise<User | ErrorResponse> {
+  try {
+    const user = await prisma.user.findFirst({
+      where: { email: { equals: email } },
+    });
+    if (user === null) {
+      return { error: "User not found", status: 404 };
+    }
+    return user;
+  } catch (error: any) {
+    return { error: error.message, status: 500 };
+  }
+}

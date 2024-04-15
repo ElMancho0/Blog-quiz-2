@@ -33,6 +33,7 @@ export async function deletePublication(id: string): Promise<Publication | Error
 export async function savePublication(publication: Publication): Promise<Publication | ErrorResponse> {
   try {
     const res: Response = await fetch(`api/v1/publications`, { 
+      cache: "no-store",
       method: "POST",
       headers: {
         "Content-Type": "application/json",

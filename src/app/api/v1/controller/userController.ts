@@ -26,3 +26,7 @@ export function saveUser(user: User): Promise<User | ErrorResponse> {
 export function deleteUser(id: string): Promise<User | ErrorResponse> {
   return deleteUserInPrisma(id);
 }
+
+export function getUserByEmail(email: string): Promise<User | ErrorResponse> {
+  return getUserFromPrisma(email);
+}
