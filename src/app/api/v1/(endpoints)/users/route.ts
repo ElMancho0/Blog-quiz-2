@@ -4,7 +4,7 @@ import { ErrorResponse } from "@/app/api/v1/model/ErrorResponse";
 import { User } from "@prisma/client";
 
 export async function GET(request: Request, context: any): Promise<NextResponse> {
-  const response = await getUsers();
+  const response = await getUsers() as User[] | ErrorResponse;
   if ("error" in response) {
     return NextResponse.json(response, { status: response.status });
   }
@@ -16,7 +16,7 @@ export async function POST(
   context: any
 ): Promise<NextResponse> {
   const user = (await request.json()) as User;
-  const response = await saveUser(user);
+  const response = await saveUser(user) as User | ErrorResponse;
   if ("error" in response) {
     return NextResponse.json(response, { status: response.status });
   }
